@@ -11,7 +11,7 @@ public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
 
     public OrderServiceImpl() {
         // Инициализация клиента для взаимодействия с сервисом PaymentService
-        this.orderClient = new OrderClient("localhost", 50051); // Указываем хост и порт сервиса оплаты
+        this.orderClient = new OrderClient("localhost", 65535); // Указываем хост и порт сервиса оплаты
     }
 
     @Override
@@ -23,6 +23,7 @@ public class OrderServiceImpl extends OrderServiceGrpc.OrderServiceImplBase {
         String userId = "USER123";  // Здесь можно использовать данные из запроса или базы данных
         double amount = 99.99;  // Например, это можно брать из запроса
         String currency = "USD";
+
 
         // Взаимодействуем с сервисом платежей через OrderClient
         orderClient.createOrder(orderId, userId, amount, currency);
