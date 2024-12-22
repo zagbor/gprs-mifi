@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.grps.payment";
+option java_outer_classname = "PaymentProto";
+
+service PaymentService {
+  rpc ProcessPayment (PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string transactionId = 1;
+  string userId = 2;
+  double amount = 3;
+  string currency = 4;
+}
+
+message PaymentResponse {
+  string status = 1;   // SUCCESS или FAILED
+  string message = 2;  // Сообщение о результате
+  string transactionId = 3; // ID транзакции
+}
+service OrderService {
+  rpc CreateOrder (OrderRequest) returns (OrderResponse);
+}
+
+message OrderRequest {
+  string orderId = 1;
+  string userId = 2;
+  string product = 3;
+  double price = 4;
+}
+
+message OrderResponse {
+  string status = 1;   // SUCCESS или FAILED
+  string message = 2;  // Подробное сообщение
+  string paymentStatus = 3; // Статус платежа
+}

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  payment_service:
+    build:
+      context: payment-service
+    ports:
+      - "65534:65534"
+  order_service:
+    build:
+      context: order-service
+    ports:
+      - "65535:65535"
